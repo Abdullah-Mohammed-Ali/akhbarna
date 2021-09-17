@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:async';
 import 'dart:math';
 
 import 'package:akhbarna/data_layer/data_provider/web_services/news_provider.dart';
@@ -30,5 +32,17 @@ class NewsRepository {
       print(e.toString());
       return [];
     }
+  }
+
+  Future<List<ArticleModel>> searchArticles(String search) async {
+    List<ArticleModel> article =
+        await _newsProvider.searchForArticles(search).then(
+              (value) => value
+                  .map(
+                    (e) => ArticleModel.fromEntities(e),
+                  )
+                  .toList(),
+            );
+    return article;
   }
 }

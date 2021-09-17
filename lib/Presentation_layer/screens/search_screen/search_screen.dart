@@ -10,50 +10,59 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 16.0.w,
-          vertical: 20.0.h,
-        ),
+        padding: const EdgeInsets.all(8.0),
         child: Scaffold(
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                child: Text(
-                  'Search',
-                  style: GoogleFonts.poppins(
-                    fontSize: 25.sp,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 12.h,
-              ),
-              Form(
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(22),
-                      borderSide: BorderSide(
-                        color: Colors.black,
-                      ),
-                    ),
-                    suffixIcon: Padding(
-                      padding: EdgeInsets.all(8.0.w),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          FontAwesomeIcons.search,
+          backgroundColor: Colors.white,
+          body: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                backgroundColor: Colors.white,
+                expandedHeight: 150.0.h,
+                collapsedHeight: 150,
+                flexibleSpace: FlexibleSpaceBar(
+                  centerTitle: true,
+                  title: Column(
+                    children: [
+                      Text(
+                        'Search',
+                        style: GoogleFonts.poppins(
+                          fontSize: 25.sp,
                           color: Colors.black,
                         ),
                       ),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(22),
-                      borderSide: BorderSide(
-                        color: Colors.black,
+                      SizedBox(
+                        height: 15.h,
                       ),
-                    ),
+                      Container(
+                        height: 55.h,
+                        child: Form(
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(22),
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                ),
+                              ),
+                              suffixIcon: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  FontAwesomeIcons.search,
+                                  color: Colors.black,
+                                  size: 15,
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(22),
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

@@ -17,6 +17,7 @@ class NewsCubit extends Cubit<NewsState> {
 
   void getTopArticles() async {
     emit(NewsLoading());
+    await _repository.searchArticles('apple').then((value) => null);
     try {
       List<ArticleModel> list = await _repository.getTopHeadLine();
       articles = list;
