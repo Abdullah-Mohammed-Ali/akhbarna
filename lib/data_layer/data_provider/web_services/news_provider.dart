@@ -33,19 +33,27 @@ class NewsProvider {
   }
 
   Future<List<ArticleEntitiesModel>> searchForArticles(String search) async {
-    Response response = await _dio.get(
-      'everything?apiKey=$_APIKey',
-      queryParameters: {
-        'q': search,
-        'from': '17-9-2021',
-        'sortBy': 'popularity',
-        'apiKey': _APIKey
-      },
-    );
-    List<dynamic> data = response.data['articles'];
-    List<ArticleEntitiesModel> searchArticles =
-        data.map((e) => ArticleEntitiesModel.fromJson(e)).toList();
-    print(searchArticles[0].title);
-    return searchArticles;
+    DateTime date = DateTime.now();
+    String dateFormatted = DateTime(date.year, date.month, date.day).toString();
+    print(dateFormatted);
+    try {
+      Response response = await _dio.get(
+        'everything?apiKey=$_APIKey',
+        queryParameters: {
+          'q': search,
+          'from': dateFormatted,
+          'sortBy': 'popularity',
+          'apiKey': _APIKey
+        },
+      );
+      List<dynamic> data = response.data['articles'];
+      List<ArticleEntitiesModel> searchArticles =
+          data.map((e) => ArticleEntitiesModel.fromJson(e)).toList();
+      print(searchArticles[0].title);
+      return searchArticles;
+    } catch (error) {
+      print(error);
+      return [];
+    }
   }
 }

@@ -5,6 +5,8 @@ import 'package:akhbarna/data_layer/models/article_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../reusable_component.dart';
+
 class NewsListItem extends StatelessWidget {
   const NewsListItem({Key? key, required this.articleModel}) : super(key: key);
   final ArticleModel articleModel;
@@ -39,15 +41,4 @@ class NewsListItem extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget imageCheck(String url) {
-  if (url == '') {
-    return Image(
-      image: AssetImage(splashImage),
-    );
-  } else
-    return Image(
-      image: NetworkImage(url),
-    );
 }

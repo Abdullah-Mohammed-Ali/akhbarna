@@ -15,6 +15,9 @@ class NewsCubit extends Cubit<NewsState> {
 
   List<ArticleModel> articles = [];
 
+  List<ArticleModel> Searchedarticles = [];
+
+  String search = '';
   void getTopArticles() async {
     emit(NewsLoading());
     await _repository.searchArticles('apple').then((value) => null);
@@ -26,6 +29,12 @@ class NewsCubit extends Cubit<NewsState> {
       emit(NewsLoadedSuccess());
     } catch (e) {
       emit(NewsError(e.toString()));
+    }
+  }
+
+  void getSearchedArticles() async {
+    if (!search.isEmpty) {
+      await _repository.searchArticles(search);
     }
   }
 }

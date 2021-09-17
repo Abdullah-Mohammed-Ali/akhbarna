@@ -1,3 +1,5 @@
+import 'package:akhbarna/BLoc%20Layer/news_cubit.dart';
+import 'package:akhbarna/Presentation_layer/widgets/searched_list_item/search_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,6 +10,7 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var cubit = NewsCubit.get(context);
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -66,6 +69,15 @@ class SearchScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              ListView.builder(itemBuilder: (context, index) {
+                if (cubit.Searchedarticles.length > 0)
+                  return SearchItem(
+                    articleModel: cubit.Searchedarticles[index],
+                  );
+                else {
+                  return Container();
+                }
+              })
             ],
           ),
         ),
